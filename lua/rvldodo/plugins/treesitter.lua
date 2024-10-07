@@ -2,15 +2,13 @@ return {
    "nvim-treesitter/nvim-treesitter",
    event = { "BufReadPre", "BufNewFile" },
    build = ":TSUpdate",
-   dependencies = {
-      "windwp/nvim-ts-autotag",
-   },
    config = function()
       -- import nvim-treesitter plugin
       local treesitter = require("nvim-treesitter.configs")
 
       -- configure treesitter
-      treesitter.setup({ -- enable syntax highlighting
+      treesitter.setup({
+         -- enable syntax highlighting
          highlight = {
             enable = true,
          },
@@ -45,6 +43,13 @@ return {
             "go",
             -- "proto",
          },
+         -- install languages synchronously (only applied to `ensure_installed`)
+         sync_install = false,
+         -- list of parsers to ignore installing (for `ensure_installed`)
+         ignore_install = {},
+         -- automatically install missing parsers when entering buffer
+         auto_install = true,
+         -- incremental selection
          incremental_selection = {
             enable = true,
             keymaps = {
