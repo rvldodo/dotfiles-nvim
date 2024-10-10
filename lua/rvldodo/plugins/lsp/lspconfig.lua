@@ -131,11 +131,11 @@ return {
                },
             })
          end,
-         ["gopls"] = function()
-            lspconfig["gopls"].setup({
-               capabilities = capabilities,
-            })
-         end,
+         -- ["gopls"] = function()
+         --    lspconfig["gopls"].setup({
+         --       capabilities = capabilities,
+         --    })
+         -- end,
          ["html"] = function()
             lspconfig["html"].setup({
                capabilities = capabilities,
@@ -155,7 +155,19 @@ return {
                   -- Avoid formatting conflicts with other formatters
                   client.server_capabilities.documentFormattingProvider = false
                end,
-               filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" }, -- Add relevant filetypes
+               filetypes = {
+                  "javascript",
+                  "javascriptreact",
+                  "javascript.jsx",
+                  "typescript",
+                  "typescriptreact",
+                  "typescript.tsx",
+               }, -- Add relevant filetypes
+               init_options = {
+                  preferences = {
+                     disableSuggestions = true,
+                  },
+               },
             })
          end, -- end,
       })
